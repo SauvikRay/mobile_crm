@@ -9,7 +9,7 @@ class CustomTheme {
   static ThemeData get mainTheme {
     return ThemeData(
       primarySwatch: AppColors.kToDark,
-      fontFamily: 'Roboto',
+      fontFamily: 'Poppins',
       scaffoldBackgroundColor: AppColors.scaffoldColor,
       primaryColor: AppColors.primaryColor,
       appBarTheme: AppBarTheme(

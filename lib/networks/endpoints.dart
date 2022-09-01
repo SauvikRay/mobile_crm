@@ -23,9 +23,11 @@ class Endpoints {
   static String postlogin() => "/api/login";
   static String getLogout() => "/api/logout";
   static String getIgList() => "/api/order/getIGName";
-  static String getShop() => "/api/shop-show";
-  static String getShopList() => "/api/shop-list";
-  static String getDeliveryBoyList() => "/api/delivery-men";
+  static String getAppStock() => "/api/order/getAppStock";
+  static String getSalesReport() => "/api/PartyTDSD/get_BillAmt";
+  static String getLedgerReport() => "/api/LedgerMast/Ledger";
+
+  ////////////////////
   static String getShopDeliveryBoyList() => "/api/shop-delivery-men";
   static String postShopDeliveryBoyList() => "/api/assign-shop-delivery-men";
   static String postShopAddress(String shop) => "/api/save-shop-contact/$shop";

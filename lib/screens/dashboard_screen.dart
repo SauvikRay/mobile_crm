@@ -109,7 +109,7 @@ class DashBoardCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-        width: .55.sw,
+        width: .60.sw,
         height: .35.sw,
         child: Column(
           children: [

@@ -11,7 +11,8 @@ import 'package:mobile_crm/helpers/navigation-services.dart';
 import '../constants/text_font_style.dart';
 import '../constants/ui_helpers.dart';
 import '../networks/api_acess.dart';
-import '../widgets/category_popup.dart';
+import '../widgets/balance_due_dialouge.dart';
+import '../widgets/ledger_dialouge.dart';
 
 class Reports extends StatefulWidget {
   const Reports({Key? key}) : super(key: key);
@@ -64,7 +65,7 @@ class _ReportsState extends State<Reports> {
                           MaterialButton(
                             padding: EdgeInsets.zero,
                             onPressed: () {
-                              NavigationService.navigateTo(Routes.reportsTable);
+                              NavigationService.navigateTo(Routes.salesReport);
 
                               appbarName(
                                 'Sales Report',
@@ -99,8 +100,11 @@ class _ReportsState extends State<Reports> {
                           ),
                           MaterialButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () {
-                              NavigationService.navigateTo(Routes.reportsTable);
+                            onPressed: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (context) => const LedgerDialoge(),
+                              );
 
                               appbarName(
                                 'Ledger Report',
@@ -173,17 +177,21 @@ class _ReportsState extends State<Reports> {
                             padding: EdgeInsets.zero,
                             onPressed: () async {
                               await showDialog(
-                                  context: context,
-                                  builder: (context) => SizedBox(
-                                        height: 500,
-                                        width: 200,
-                                        child: CategoryGroupPopupWidget(
-                                          categorygroupPopupText:
-                                              _groupPopupValueController,
-                                          value:
-                                              _groupPopupValueController.text,
-                                        ),
-                                      ));
+                                context: context,
+                                builder: (context) => const BalanceDueDialoge(),
+                              );
+
+                              //  SizedBox(
+                              //       height: 500,
+                              //       width: 200,
+                              //       child: CategoryGroupPopupWidget(
+                              //         categorygroupPopupText:
+                              //             _groupPopupValueController,
+                              //         value:
+                              //             _groupPopupValueController.text,
+                              //       ),
+                              //     ));
+
                               // NavigationService.navigateTo(
                               //     Routes.reportsPreSelect);
 

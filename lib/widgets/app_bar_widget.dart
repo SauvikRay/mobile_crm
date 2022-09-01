@@ -49,12 +49,17 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                               value.iconName.toString(),
                               color: Colors.black,
                             ),
-                            UIHelper.horizontalSpaceSmall,
+                            UIHelper.horizontalSpaceMedium,
                             Text(
                               value.appBarname,
                               style: TextFontStyle.welcome
                                   .copyWith(color: Colors.black),
                             ),
+                            UIHelper.horizontalSpaceMedium,
+                            Text(
+                              'Log in Type: ${storage.read(kKeyLoggedId)}',
+                              style: TextFontStyle.loginType,
+                            )
                           ],
                         )
                       : Padding(
@@ -72,10 +77,6 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           ),
                         ),
-                  Text(
-                    storage.read(kKeyLoggedId),
-                    style: TextFontStyle.loginType,
-                  )
                 ],
               )),
       actions: [
@@ -111,34 +112,5 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(70);
-}
-
-class MyAppBarClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    double radius = 10;
-
-    Path path = Path()
-      ..lineTo(0, 0) //start point
-
-      ..lineTo(size.width, 0) // device width(dx),0(dy)
-      ..lineTo(size.width, size.height - radius) //deviceWidth, 100
-      ..arcToPoint(
-          Offset(size.width - radius,
-              size.height - (radius * 2)), //deviceWidth-20,160
-          radius: Radius.circular(radius),
-          clockwise: false)
-      ..lineTo(radius, size.height - (radius * 2)) //20,100
-      ..arcToPoint(Offset(0, size.height - radius), //0,100
-          radius: Radius.circular(radius),
-          clockwise: false)
-      ..lineTo(0, size.height - radius)
-      ..close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+  Size get preferredSize => const Size.fromHeight(80);
 }

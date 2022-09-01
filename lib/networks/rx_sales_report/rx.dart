@@ -1,19 +1,19 @@
 import 'package:rxdart/rxdart.dart';
+
 import 'api.dart';
 
-class GetDeliveyBoyRX {
-  final api = GetDeliveyBoyApi();
+class GetSalesReportRX {
+  final api = GetSalesReportApi();
   late Map empty;
   final BehaviorSubject _dataFetcher = BehaviorSubject<Map>();
 
-  ValueStream get getGetDeliveyBoyData => _dataFetcher.stream;
+  ValueStream get getSalesReport => _dataFetcher.stream;
 
-  Future<void> fetchGetDeliveyBoyData() async {
+  Future<void> fetcSalesReportData() async {
     try {
-      Map data = await api.fetchDeliveyBoyList();
-      _dataFetcher.sink.add(data);
+      Map faqData = await api.fetchSalesReportData();
+      _dataFetcher.sink.add(faqData);
     } catch (e) {
-      // print(e);
       _dataFetcher.sink.addError(e);
     }
   }

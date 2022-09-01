@@ -10,6 +10,8 @@ import 'package:mobile_crm/helpers/navigation-services.dart';
 
 import '../constants/text_font_style.dart';
 import '../constants/ui_helpers.dart';
+import '../networks/api_acess.dart';
+import '../widgets/category_popup.dart';
 
 class Reports extends StatefulWidget {
   const Reports({Key? key}) : super(key: key);
@@ -19,8 +21,11 @@ class Reports extends StatefulWidget {
 }
 
 class _ReportsState extends State<Reports> {
+  final TextEditingController _groupPopupValueController =
+      TextEditingController();
   @override
   void initState() {
+    getIgRXobj.fetcIgDataData();
     super.initState();
   }
 
@@ -117,7 +122,7 @@ class _ReportsState extends State<Reports> {
                                 style: TextFontStyle.buttonBoldStyle
                                     .copyWith(color: Colors.black),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Icon(
                                 Icons.arrow_forward_ios_rounded,
                                 size: 15.sp,
@@ -153,7 +158,7 @@ class _ReportsState extends State<Reports> {
                                 style: TextFontStyle.buttonBoldStyle
                                     .copyWith(color: Colors.black),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Icon(
                                 Icons.arrow_forward_ios_rounded,
                                 size: 15.sp,
@@ -166,17 +171,30 @@ class _ReportsState extends State<Reports> {
                           ),
                           MaterialButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () {
-                              NavigationService.navigateTo(Routes.reportsTable);
+                            onPressed: () async {
+                              await showDialog(
+                                  context: context,
+                                  builder: (context) => SizedBox(
+                                        height: 500,
+                                        width: 200,
+                                        child: CategoryGroupPopupWidget(
+                                          categorygroupPopupText:
+                                              _groupPopupValueController,
+                                          value:
+                                              _groupPopupValueController.text,
+                                        ),
+                                      ));
+                              // NavigationService.navigateTo(
+                              //     Routes.reportsPreSelect);
 
-                              appbarName(
-                                'Balance Due',
-                                AssetIcons.balanceDue.toString(),
-                                context,
-                              );
+                              // appbarName(
+                              //   'Balance Due',
+                              //   AssetIcons.balanceDue.toString(),
+                              //   context,
+                              // );
 
-                              SystemChrome.setPreferredOrientations(
-                                  [DeviceOrientation.landscapeLeft]);
+                              // SystemChrome.setPreferredOrientations(
+                              //     [DeviceOrientation.landscapeLeft]);
                             },
                             child: Row(children: [
                               SvgPicture.asset(
@@ -189,7 +207,7 @@ class _ReportsState extends State<Reports> {
                                 style: TextFontStyle.buttonBoldStyle
                                     .copyWith(color: Colors.black),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Icon(
                                 Icons.arrow_forward_ios_rounded,
                                 size: 15.sp,

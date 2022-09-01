@@ -1,24 +1,25 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
+
 import '/helpers/dio/dio.dart';
 import '/networks/endpoints.dart';
 
 class LoginApi {
   Future<Map> login(
       String mobNumber, String acessPin, String macAddress) async {
-    Map data = {
+    FormData formData = FormData.fromMap({
       "MobileNo": mobNumber,
       "AcessPin": acessPin,
       "macAddress": macAddress,
-    };
+    });
 
-    final response = await postHttp(Endpoints.postlogin(), data);
+    final response = await postHttp(Endpoints.postlogin(), formData);
 
     if (response.statusCode == 200) {
-      log(response.statusCode.toString());
-      Map data = json.decode(json.encode(response.data));
-
+      Map data = json.decode(response.data);
+      log(data.toString());
       return data;
     }
 

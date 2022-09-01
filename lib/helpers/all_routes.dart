@@ -7,6 +7,7 @@ import 'package:mobile_crm/screens/report_screen.dart';
 import 'package:mobile_crm/screens/transaction_screen.dart';
 
 import '../screens/report_table_screen.dart';
+import '../widgets/category_popup.dart';
 
 class Routes {
   //static const String loader='/loader';
@@ -16,6 +17,7 @@ class Routes {
   static const String homeNavigation = '/homeNavigation';
 
   static const String reportsTable = '/reportsTable';
+  static const String reportsPreSelect = '/preselect';
 }
 
 class RouteGenerator {
@@ -46,6 +48,12 @@ class RouteGenerator {
             ? _FadedTransitionRoute(
                 widget: const ReportsTable(), settings: settings)
             : CupertinoPageRoute(builder: (context) => const ReportsTable());
+      case Routes.reportsPreSelect:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: CategoryGroupPopupWidget(), settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => CategoryGroupPopupWidget());
       // case Routes.contactoEnderco:
       //   return Platform.isAndroid
       //       ? _FadedTransitionRoute(

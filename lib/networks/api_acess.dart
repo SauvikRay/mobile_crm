@@ -31,7 +31,10 @@
 
 import 'package:mobile_crm/networks/rx_login/rx.dart';
 
+import 'rx_get_ig/rx.dart';
+
 GetLoginRX getLoginRXobj = GetLoginRX();
+GetIgRX getIgRXobj = GetIgRX();
 // GetLogOutRX getLogOutRXobj = GetLogOutRX();
 // GetDashBoardRX getDashBoardRXobj = GetDashBoardRX();
 // GetBalanceRecRX getBalanceRecRXobj = GetBalanceRecRX();

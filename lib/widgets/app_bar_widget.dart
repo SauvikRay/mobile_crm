@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobile_crm/constants/app_constants.dart';
 import 'package:mobile_crm/constants/ui_helpers.dart';
 import 'package:mobile_crm/controller/change_appbar_name.dart';
@@ -22,6 +23,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     //final appBarTheme = Theme.of(context).appBarTheme;
+    final storage = GetStorage();
     return AppBar(
       automaticallyImplyLeading: false,
       title: Consumer<AppbarNameProvider>(
@@ -64,14 +66,14 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                                     text: 'Welcome,',
                                     style: TextFontStyle.welcome),
                                 TextSpan(
-                                    text: ' Customer Name',
+                                    text: storage.read(kKeyDisplayName),
                                     style: TextFontStyle.customerName),
                               ],
                             ),
                           ),
                         ),
                   Text(
-                    (value.appBarname != '') ? '' : 'Admin',
+                    storage.read(kKeyLoggedId),
                     style: TextFontStyle.loginType,
                   )
                 ],

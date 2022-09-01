@@ -21,11 +21,7 @@ class DioSingleton {
       baseUrl: url,
       responseType: ResponseType.json,
       headers: {
-        NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
-        NetworkConstants.ACCEPT_LANGUAGE:
-            NetworkConstants.ACCEPT_LANGUAGE_VALUE,
-        NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
-        NetworkConstants.AUTHORIZATION: "Bearer $auth",
+        NetworkConstants.TOKEN: auth,
       },
       connectTimeout: 100000,
       receiveTimeout: 100000,
@@ -35,15 +31,10 @@ class DioSingleton {
 
   void create() {
     BaseOptions options = BaseOptions(
-        baseUrl: url,
-        connectTimeout: 100000,
-        receiveTimeout: 100000,
-        headers: {
-          NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
-          NetworkConstants.ACCEPT_LANGUAGE:
-              NetworkConstants.ACCEPT_LANGUAGE_VALUE,
-          NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
-        });
+      baseUrl: url,
+      connectTimeout: 100000,
+      receiveTimeout: 100000,
+    );
     dio = Dio(options)..interceptors.add(Logger());
   }
 }

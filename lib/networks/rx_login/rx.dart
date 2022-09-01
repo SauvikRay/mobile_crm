@@ -30,7 +30,6 @@ class GetLoginRX {
         builder: (context) => loadingIndicatorCircle(context: context),
       );
       Map data = await api.login(mobNumber, acessPin, macAddress);
-      log(data.toString());
       _dataFetcher.sink.add(data);
       final storage = GetStorage();
       status = data["status"];
@@ -52,10 +51,10 @@ class GetLoginRX {
       storage.write(kKeyIsLoggedIn, true);
 
       DioSingleton.instance.update(accesstoken);
-      // LocalNotificationService.getToken();
+
       NavigationService.goBack;
 
-      // NavigationService.navigateToReplacement(Routes.loadingScreen);
+      NavigationService.navigateToReplacement(Routes.homeNavigation);
     } catch (e) {
       log(e.toString());
       NavigationService.goBack;

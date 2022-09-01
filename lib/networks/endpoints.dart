@@ -13,8 +13,7 @@ class NetworkConstants {
   static const APP_KEY = "App-Key";
   static const ACCEPT_LANGUAGE = "Accept-Language";
   static const ACCEPT_LANGUAGE_VALUE = "pt";
-  static const APP_KEY_VALUE =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZWJ1eS1hbmRyb2lkLWFwcHMiLCJpYXQiOjE1NzIzNzI3Nzh9.X1qxpv6WDUP-7Ootx7cISwCUeYtulHhqhxvDjpAzCSg";
+  static const TOKEN = "token";
   static const ACCEPT_TYPE = "application/json";
   static const AUTHORIZATION = "Authorization";
   static const CONTENT_TYPE = "content-Type";
@@ -23,7 +22,7 @@ class NetworkConstants {
 class Endpoints {
   static String postlogin() => "/api/login";
   static String getLogout() => "/api/logout";
-  static String getDashBoard() => "/api/shop-dashboard";
+  static String getIgList() => "/api/order/getIGName";
   static String getShop() => "/api/shop-show";
   static String getShopList() => "/api/shop-list";
   static String getDeliveryBoyList() => "/api/delivery-men";

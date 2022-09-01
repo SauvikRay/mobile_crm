@@ -18,8 +18,8 @@ class LogeinScreen extends StatefulWidget {
 }
 
 class _LogeinScreenState extends State<LogeinScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+  TextEditingController acceKeyController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   String? emailvalidation;
@@ -107,8 +107,8 @@ class _LogeinScreenState extends State<LogeinScreen> {
                               }
                               return null;
                             },
-                            controller: emailController,
-                            keyboardType: TextInputType.emailAddress,
+                            controller: mobileController,
+                            keyboardType: TextInputType.number,
                             style: TextStyle(
                               letterSpacing: 1.5,
                               fontSize: 14.sp,
@@ -177,7 +177,7 @@ class _LogeinScreenState extends State<LogeinScreen> {
                                     }
                                     return null;
                                   },
-                                  controller: passwordController,
+                                  controller: acceKeyController,
                                   obscureText: true,
                                   style: TextStyle(
                                     letterSpacing: 1.5,
@@ -246,12 +246,9 @@ class _LogeinScreenState extends State<LogeinScreen> {
                               setId();
                               String macAddress = storage.read(kKeyDeviceID);
                               await getLoginRXobj.login(
-                                // passwordController.text.toString(),
-                                // macAddress,
-                                // emailController.text.toString(),
-                                '9560850036',
-                                '45',
-                                '5800E3C562',
+                                mobileController.text.toString(),
+                                acceKeyController.text.toString(),
+                                "5800E3C562",
                               );
 
                               setState(() {

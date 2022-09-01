@@ -1,16 +1,16 @@
 import 'package:rxdart/rxdart.dart';
 import 'api.dart';
 
-class GetDashBoardRX {
-  final api = GetDashBoardApi();
+class GetIgRX {
+  final api = GetIgListApi();
   late Map empty;
   final BehaviorSubject _dataFetcher = BehaviorSubject<Map>();
 
-  ValueStream get getDashBoardData => _dataFetcher.stream;
+  ValueStream get getIgData => _dataFetcher.stream;
 
-  Future<void> fetchFaqData() async {
+  Future<void> fetcIgDataData() async {
     try {
-      Map faqData = await api.fetchDashBoardData();
+      Map faqData = await api.fetchIgData();
       _dataFetcher.sink.add(faqData);
     } catch (e) {
       _dataFetcher.sink.addError(e);

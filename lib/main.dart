@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobile_crm/helpers/helpers.dart';
@@ -10,6 +11,7 @@ import 'controller/appbar_name_provider.dart';
 import 'helpers/all_routes.dart';
 import 'helpers/di.dart';
 import 'helpers/dio/dio.dart';
+import 'screens/loading.dart';
 import 'screens/login_screen.dart';
 
 void main() async {
@@ -17,6 +19,11 @@ void main() async {
 
   await GetStorage.init();
   DioSingleton.instance.create();
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+    ],
+  );
   runApp(const MyApp());
 }
 
@@ -43,7 +50,7 @@ class MyApp extends StatelessWidget {
               builder: (context, widget) {
                 return MediaQuery(data: MediaQuery.of(context), child: widget!);
               },
-              home: LogeinScreen(), //const NavigationScreen(),
+              home: Loading(), //const NavigationScreen(),
               navigatorKey: NavigationService.navigatorKey,
               onGenerateRoute: RouteGenerator.generateRoute,
             );

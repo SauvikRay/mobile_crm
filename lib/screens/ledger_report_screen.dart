@@ -5,46 +5,32 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_crm/constants/app_constants.dart';
 import 'package:mobile_crm/constants/text_font_style.dart';
 import 'package:mobile_crm/constants/ui_helpers.dart';
-import 'package:mobile_crm/helpers/navigation-services.dart';
 import 'package:mobile_crm/networks/api_acess.dart';
 import 'package:mobile_crm/widgets/app_bar_widget.dart';
 import 'package:mobile_crm/widgets/lable_text_button.dart';
-import 'package:mobile_crm/widgets/loading_indicators.dart';
 
 import '../constants/appcolors.dart';
 import '../widgets/custome_table.dart';
 
-class SalesReport extends StatefulWidget {
-  const SalesReport({Key? key}) : super(key: key);
+class LedgerReportScreen extends StatefulWidget {
+  const LedgerReportScreen({Key? key}) : super(key: key);
 
   @override
-  State<SalesReport> createState() => _SalesReportState();
+  State<LedgerReportScreen> createState() => _LedgerReportScreenState();
 }
 
-class _SalesReportState extends State<SalesReport> {
+class _LedgerReportScreenState extends State<LedgerReportScreen> {
   List<dynamic> items = [];
   @override
   void initState() {
-    fetchSalesReportAllData();
-    getSalesReportRXobj.getSalesReport.first.then(
+    getLedgerReportRxobj.getLedgerReportData.first.then(
       (value) {
         setState(() {
-          items = value['BillAmt'];
+          items = value['Ledger'];
         });
       },
     );
     super.initState();
-  }
-
-  fetchSalesReportAllData() async {
-    await getSalesReportRXobj.fetcSalesReportData();
-    // Future.delayed(Duration(milliseconds: 400), () {
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) => loadingIndicatorCircle(context: context),
-    //   );
-    // });
-    // NavigationService.goBack;
   }
 
   @override
@@ -123,7 +109,7 @@ class _SalesReportState extends State<SalesReport> {
                   data: Theme.of(context)
                       .copyWith(dividerColor: AppColors.scaffoldColor),
                   child: DataTable(
-                    columnSpacing: .08.sw,
+                    columnSpacing: .09.sw,
                     headingTextStyle: TextFontStyle.cardhead.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -145,66 +131,26 @@ class _SalesReportState extends State<SalesReport> {
                     ),
                     columns: const <DataColumn>[
                       DataColumn(
-                        label: Text('Bill No.',
+                        label: Text('SNo.',
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left),
                       ),
                       DataColumn(
-                        label: Text('Bdate',
+                        label: Text('Ledger',
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left),
                       ),
                       DataColumn(
-                        label: Text('Party Name',
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left),
-                      ),
-                      DataColumn(
-                        label: Text('Bill Amount',
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left),
-                      ),
-                      DataColumn(
-                        label: Text('Export Val.',
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left),
-                      ),
-
-                      // DataColumn(
-                      //   label: Text('ExAmt',
-                      //       overflow: TextOverflow.ellipsis,
-                      //       textAlign: TextAlign.left),
-                      // ),
-
-                      DataColumn(
-                        label: Text('ExGST',
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left),
-                      ),
-                      DataColumn(
-                        label: Text('ExCGSTAmt',
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left),
-                      ),
-                      DataColumn(
-                        label: Text('ExIGSTAmt',
+                        label: Text('Amount',
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left),
                       ),
                     ],
                     rows: items
                         .map((items) => DataRow(cells: [
-                              DataCell(Text(items['BillNo'])),
-                              DataCell(Text(items['BDate'])),
-                              DataCell(Text(items['Pcode'])),
-                              DataCell(Text(items['BillAmt'])),
-                              // DataCell(Text(items['Export'].toString())),
-                              DataCell(Text(items['ExAmt'])),
-                              DataCell(Text((items['ExGST'] != null)
-                                  ? items['ExGST']
-                                  : 'N/A')),
-                              DataCell(Text(items['ExCGSTAmt'])),
-                              DataCell(Text(items['ExIGSTAmt'])),
+                              DataCell(Text(items['SNo'])),
+                              DataCell(Text(items['Ledger'])),
+                              DataCell(Text(items['Amount'])),
                             ]))
                         .toList(),
                   ),

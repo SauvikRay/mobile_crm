@@ -26,11 +26,9 @@ class Endpoints {
   static String getAppStock() => "/api/order/getAppStock";
   static String getSalesReport() => "/api/PartyTDSD/get_BillAmt";
   static String getLedgerReport() => "/api/LedgerMast/Ledger";
-
+  static String getOutStandingReport() => "/api/Party/getOutstanding";
+  static String getPartyNameList() => "/api/LedgerMast/PartyName";
   ////////////////////
-  static String getShopDeliveryBoyList() => "/api/shop-delivery-men";
-  static String postShopDeliveryBoyList() => "/api/assign-shop-delivery-men";
-  static String postShopAddress(String shop) => "/api/save-shop-contact/$shop";
   static String postShopSchedule() => "/api/save-shop-schedule";
   static String getShopSchedule(String shop) => "/api/shop-schedule/$shop";
   static String postShopHolidays() => "/api/save-shop-holiday";

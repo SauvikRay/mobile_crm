@@ -7,7 +7,8 @@ import 'package:mobile_crm/screens/report_screen.dart';
 import 'package:mobile_crm/screens/transaction_screen.dart';
 
 import '../screens/balance_due_report.dart';
-import '../screens/ledger_report.dart';
+import '../screens/ledger_report_screen.dart';
+import '../screens/outstanding_report.dart';
 import '../screens/report_table_screen.dart';
 import '../screens/sales_report.dart';
 import '../widgets/category_popup.dart';
@@ -24,6 +25,7 @@ class Routes {
   static const String balanceDueReport = '/balanceDueReport';
   static const String salesReport = '/salesReport';
   static const String ledgerReport = '/ledgerReport';
+  static const String outstandingReportReport = '/outstandingReportReport';
 }
 
 class RouteGenerator {
@@ -68,14 +70,23 @@ class RouteGenerator {
       case Routes.ledgerReport:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const LedgerReport(), settings: settings)
-            : CupertinoPageRoute(builder: (context) => const LedgerReport());
+                widget: const LedgerReportScreen(), settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const LedgerReportScreen());
       case Routes.balanceDueReport:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
                 widget: const BalanceDueReport(), settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const BalanceDueReport());
+
+      case Routes.outstandingReportReport:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const OutstandingReport(), settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const OutstandingReport());
+
       // case Routes.contactoEnderco:
       //   return Platform.isAndroid
       //       ? _FadedTransitionRoute(

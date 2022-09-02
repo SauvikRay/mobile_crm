@@ -34,7 +34,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                       ? Row(
                           children: [
                             IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.arrow_back_rounded,
                                 color: Colors.black,
                               ),
@@ -56,25 +56,30 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                                   .copyWith(color: Colors.black),
                             ),
                             UIHelper.horizontalSpaceMedium,
-                            Text(
-                              'Log in Type: ${storage.read(kKeyLoggedId)}',
-                              style: TextFontStyle.loginType,
-                            )
                           ],
                         )
                       : Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                    text: 'Welcome,',
-                                    style: TextFontStyle.welcome),
-                                TextSpan(
-                                    text: storage.read(kKeyDisplayName),
-                                    style: TextFontStyle.customerName),
-                              ],
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                        text: 'Welcome, ',
+                                        style: TextFontStyle.welcome),
+                                    TextSpan(
+                                        text: storage.read(kKeyDisplayName),
+                                        style: TextFontStyle.customerName),
+                                  ],
+                                ),
+                              ),
+                              // Text(
+                              //   '${storage.read(kKeyLoggedId)}',
+                              //   style: TextFontStyle.loginType,
+                              // )
+                            ],
                           ),
                         ),
                 ],

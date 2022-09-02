@@ -12,7 +12,7 @@ import '../endpoints.dart';
 class GetAppStockApi {
   final storage = GetStorage();
   Future<Map> fetcAppStockData(String groupName, String dateValue) async {
-    String token = storage.read(kKeyToken);
+    String token = storage.read(kKeyAccessToken);
     String dpCode = storage.read(kKeydpCode);
 
     FormData formData = FormData.fromMap({

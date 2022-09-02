@@ -1,14 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-
 import '../constants/appcolors.dart';
-
-import '../constants/app_constants.dart';
 import '../constants/text_font_style.dart';
-import '../constants/ui_helpers.dart';
-import '../helpers/all_routes.dart';
 
 class CustomTable extends StatelessWidget {
   const CustomTable({

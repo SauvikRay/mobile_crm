@@ -12,21 +12,23 @@ import 'package:mobile_crm/widgets/lable_text_button.dart';
 import '../constants/appcolors.dart';
 import '../widgets/custome_table.dart';
 
-class LedgerReport extends StatefulWidget {
-  const LedgerReport({Key? key}) : super(key: key);
+class OutstandingReport extends StatefulWidget {
+  const OutstandingReport({Key? key}) : super(key: key);
 
   @override
-  State<LedgerReport> createState() => _LedgerReportState();
+  State<OutstandingReport> createState() => _OutstandingReportState();
 }
 
-class _LedgerReportState extends State<LedgerReport> {
+class _OutstandingReportState extends State<OutstandingReport> {
   List<dynamic> items = [];
   @override
   void initState() {
-    getLedgerReportRxobj.getLedgerReportData.first.then(
+    getOutStandingReportRXobj.getOutStandingReportData.first.then(
       (value) {
         setState(() {
-          items = value['Ledger'];
+          if (value['Outstanding'] != null) {
+            items = value['Outstanding'];
+          }
         });
       },
     );
@@ -109,7 +111,7 @@ class _LedgerReportState extends State<LedgerReport> {
                   data: Theme.of(context)
                       .copyWith(dividerColor: AppColors.scaffoldColor),
                   child: DataTable(
-                    columnSpacing: .09.sw,
+                    columnSpacing: .08.sw,
                     headingTextStyle: TextFontStyle.cardhead.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -131,26 +133,49 @@ class _LedgerReportState extends State<LedgerReport> {
                     ),
                     columns: const <DataColumn>[
                       DataColumn(
-                        label: Text('SNo.',
+                        label: Text('BillNo.',
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left),
                       ),
                       DataColumn(
-                        label: Text('Ledger',
+                        label: Text('Bno',
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left),
                       ),
                       DataColumn(
-                        label: Text('Amount',
+                        label: Text('BDate',
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left),
+                      ),
+                      DataColumn(
+                        label: Text('Pcode',
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left),
+                      ),
+                      DataColumn(
+                        label: Text('BillAmt',
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left),
+                      ),
+                      DataColumn(
+                        label: Text('VType',
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left),
                       ),
                     ],
                     rows: items
                         .map((items) => DataRow(cells: [
-                              DataCell(Text(items['SNo'])),
-                              DataCell(Text(items['Ledger'])),
-                              DataCell(Text(items['Amount'])),
+                              DataCell(Text(items['BillNo'])),
+                              DataCell(Text((items['Bno'] != null)
+                                  ? items['Bno'].toString()
+                                  : 'N/A')),
+                              DataCell(Text(items['BDate'])),
+                              DataCell(Text(items['Pcode'])),
+                              // DataCell(Text(items['Export'].toString())),
+                              DataCell(Text(items['BillAmt'])),
+                              DataCell(Text((items['VType'] != null)
+                                  ? items['VType']
+                                  : 'N/A')),
                             ]))
                         .toList(),
                   ),

@@ -25,7 +25,7 @@ const String kKeylogType = 'LogType';
 const String kKeydpCode = 'DpCode';
 const String kKeyDisplayName = 'DisplayName';
 const String kKeyAccessToken = 'access_token';
-const String kKeyToken = 'token';
+
 const String kKeyIsLoggedIn = 'is_logged_in';
 
 const String kKeyStatus = 'status';

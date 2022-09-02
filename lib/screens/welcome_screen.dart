@@ -10,10 +10,10 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: const BoxDecoration(color: AppColors.primaryColor),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -21,6 +21,10 @@ class WelcomeScreen extends StatelessWidget {
                   height: 40.h,
                 ),
                 Image.asset('assets/icons/bird.png'),
+                // Text(
+                //   'Welcome Screen',
+                //   style: TextStyle(fontSize: 30.sp, color: Colors.black),
+                // ),
                 SizedBox(
                   height: 20.h,
                 ),

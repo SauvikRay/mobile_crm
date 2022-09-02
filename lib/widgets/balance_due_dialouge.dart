@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,7 +67,7 @@ class _BalanceDueDialogeState extends State<BalanceDueDialoge> {
             children: [
               // SvgPicture.asset(AssetIcons.i),
               Text(
-                'Are you sure?',
+                'Balance Due',
                 style: TextFontStyle.headline1BoldStyle
                     .copyWith(color: Colors.black),
               ),
@@ -100,6 +102,7 @@ class _BalanceDueDialogeState extends State<BalanceDueDialoge> {
                   ),
                 ),
               ),
+
               UIHelper.verticalSpaceMedium,
 
               CategoryGroupPopupWidget(
@@ -115,31 +118,71 @@ class _BalanceDueDialogeState extends State<BalanceDueDialoge> {
                   customeButton(
                       name: 'Show Report',
                       onCallBack: () async {
-                        await getAppStockRXobj.fetchAppStockData(
-                            _groupPopupValueController.text,
-                            selectDateControler.text);
+                        log(_groupPopupValueController.text.isNotEmpty
+                            .toString());
+                        log(_groupPopupValueController.text.toString());
+                        log(selectDateControler.text.toString());
 
-                        NavigationService.goBack;
-                        NavigationService.navigateTo(Routes.balanceDueReport);
+                        if (_groupPopupValueController.text.isNotEmpty &&
+                            selectDateControler.text.isNotEmpty) {
+                          await getAppStockRXobj.fetchAppStockData(
+                              _groupPopupValueController.text,
+                              selectDateControler.text);
 
-                        appbarName(
-                          'Balance Due',
-                          AssetIcons.balanceDue.toString(),
-                          context,
-                        );
+                          Future.delayed(
+                            const Duration(milliseconds: 600),
+                            () {
+                              NavigationService.goBack;
+                              NavigationService.navigateTo(
+                                  Routes.balanceDueReport);
+                            },
+                          );
 
-                        SystemChrome.setPreferredOrientations(
-                            [DeviceOrientation.landscapeLeft]);
+                          appbarName(
+                            'Balance Due',
+                            AssetIcons.balanceDue.toString(),
+                            context,
+                          );
+
+                          SystemChrome.setPreferredOrientations(
+                              [DeviceOrientation.landscapeLeft]);
+                        } else {
+                          ScaffoldMessenger.of(NavigationService.context)
+                              .showSnackBar(const SnackBar(
+                            backgroundColor: Colors.redAccent,
+                            content: Text(
+                              'Select your Date and DC No.',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ));
+                        }
                       },
                       height: 30.h,
-                      minWidth: 130.w,
+                      minWidth: 100.w,
                       borderRadius: 8.r,
                       color: AppColors.primaryColor,
                       textStyle: TextFontStyle.headline2BoldStyle
                           .copyWith(color: Colors.white),
                       context: context),
 
-                  //Cancelar
+                  UIHelper.horizontalSpaceSmall,
+                  //Cancele
+                  customeButton(
+                      onCallBack: () {
+                        setState(() {
+                          _groupPopupValueController.clear();
+                          dateTo = '';
+                          selectDateControler.clear();
+                        });
+                      },
+                      name: 'Clear',
+                      height: 30.h,
+                      minWidth: 100.w,
+                      borderRadius: 8.r,
+                      color: Colors.redAccent,
+                      textStyle: TextFontStyle.headline2BoldStyle
+                          .copyWith(color: Colors.white),
+                      context: context),
                 ],
               ),
             ],

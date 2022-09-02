@@ -35,12 +35,16 @@ import 'package:mobile_crm/networks/rx_sales_report/rx.dart';
 
 import 'rx_get_ig/rx.dart';
 import 'rx_get_ledger_report/rx.dart';
+import 'rx_get_outstanding_report/rx.dart';
+import 'rx_get_party_name_list/rx.dart';
 
 GetLoginRX getLoginRXobj = GetLoginRX();
 GetIgRX getIgRXobj = GetIgRX();
 GetAppStockRX getAppStockRXobj = GetAppStockRX();
 GetSalesReportRX getSalesReportRXobj = GetSalesReportRX();
 GetLedgerReportRx getLedgerReportRxobj = GetLedgerReportRx();
+GetPartyNameListRx getPartyNameListRxobj = GetPartyNameListRx();
+GetOutStandingReportRX getOutStandingReportRXobj = GetOutStandingReportRX();
 // GetLogOutRX getLogOutRXobj = GetLogOutRX();
 // GetDashBoardRX getDashBoardRXobj = GetDashBoardRX();
 // GetBalanceRecRX getBalanceRecRXobj = GetBalanceRecRX();

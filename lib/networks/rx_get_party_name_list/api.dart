@@ -1,29 +1,35 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../constants/app_constants.dart';
 import '../../helpers/dio/dio.dart';
 import '../endpoints.dart';
 
-class GetSalesReportApi {
+class GetPartyNameListApi {
   final storage = GetStorage();
-  Future<Map> fetchSalesReportData() async {
+
+  Future<Map> fetchPartyNameList(dynamic listNo, dynamic mOPName) async {
     String token = storage.read(kKeyAccessToken);
+    String dpCode = storage.read(kKeydpCode);
     FormData formData = FormData.fromMap({
       "token": token,
+      "DpCode": dpCode,
+      "ListNo": listNo,
+      "MOPName": mOPName,
     });
-    final response = await postHttp(Endpoints.getSalesReport(), formData);
+
+    final response = await postHttp(Endpoints.getPartyNameList(), formData);
 
     if (response.statusCode == 200) {
+      log(response.statusCode.toString());
       Map data = json.decode(response.data);
+      log(data.toString());
       return data;
     }
-    if (kDebugMode) {
-      print(response.toString);
-    }
+
     Map empty = {};
     return empty;
   }

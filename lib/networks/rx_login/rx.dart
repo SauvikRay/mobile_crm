@@ -47,7 +47,7 @@ class GetLoginRX {
       storage.write(kKeylogType, logType);
       storage.write(kKeydpCode, dpCode);
       storage.write(kKeyDisplayName, displayName);
-      storage.write(kKeyToken, accesstoken);
+      storage.write(kKeyAccessToken, accesstoken);
       storage.write(kKeyIsLoggedIn, true);
 
       DioSingleton.instance.update(accesstoken);

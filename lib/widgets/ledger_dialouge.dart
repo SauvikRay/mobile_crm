@@ -65,7 +65,7 @@ class _LedgerDialogeState extends State<LedgerDialoge> {
             children: [
               // SvgPicture.asset(AssetIcons.i),
               Text(
-                'Are you sure?',
+                'Show Your Ledger Report',
                 style: TextFontStyle.headline1BoldStyle
                     .copyWith(color: Colors.black),
               ),
@@ -115,20 +115,31 @@ class _LedgerDialogeState extends State<LedgerDialoge> {
                   customeButton(
                       name: 'Ledger Report',
                       onCallBack: () async {
-                        await getLedgerReportRxobj.fetchLedgerReportData(
-                            selectDateControler.text, 0);
+                        if (selectDateControler.text.isNotEmpty) {
+                          await getLedgerReportRxobj.fetchLedgerReportData(
+                              selectDateControler.text, 0);
 
-                        NavigationService.goBack;
-                        NavigationService.navigateTo(Routes.ledgerReport);
+                          NavigationService.goBack;
+                          NavigationService.navigateTo(Routes.ledgerReport);
 
-                        appbarName(
-                          'Balance Due',
-                          AssetIcons.ledger.toString(),
-                          context,
-                        );
+                          appbarName(
+                            'Ledger Report',
+                            AssetIcons.ledger.toString(),
+                            context,
+                          );
 
-                        SystemChrome.setPreferredOrientations(
-                            [DeviceOrientation.landscapeLeft]);
+                          SystemChrome.setPreferredOrientations(
+                              [DeviceOrientation.landscapeLeft]);
+                        } else {
+                          ScaffoldMessenger.of(NavigationService.context)
+                              .showSnackBar(const SnackBar(
+                            backgroundColor: Colors.redAccent,
+                            content: Text(
+                              'Select your Date',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ));
+                        }
                       },
                       height: 30.h,
                       minWidth: 130.w,
@@ -137,7 +148,22 @@ class _LedgerDialogeState extends State<LedgerDialoge> {
                       textStyle: TextFontStyle.headline2BoldStyle
                           .copyWith(color: Colors.white),
                       context: context),
-
+                  UIHelper.horizontalSpaceSmall,
+                  //Cancele
+                  customeButton(
+                      onCallBack: () {
+                        setState(() {
+                          dateTo = '';
+                        });
+                      },
+                      name: 'Clear',
+                      height: 30.h,
+                      minWidth: 100.w,
+                      borderRadius: 8.r,
+                      color: Colors.redAccent,
+                      textStyle: TextFontStyle.headline2BoldStyle
+                          .copyWith(color: Colors.white),
+                      context: context),
                   //Cancelar
                 ],
               ),

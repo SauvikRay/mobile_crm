@@ -7,12 +7,16 @@ import 'package:mobile_crm/constants/appcolors.dart';
 import 'package:mobile_crm/controller/change_appbar_name.dart';
 import 'package:mobile_crm/helpers/all_routes.dart';
 import 'package:mobile_crm/helpers/navigation-services.dart';
+import 'package:mobile_crm/screens/ledger_report_screen.dart';
+import 'package:mobile_crm/widgets/custom_button.dart';
+import 'package:mobile_crm/widgets/loading_indicators.dart';
 
 import '../constants/text_font_style.dart';
 import '../constants/ui_helpers.dart';
 import '../networks/api_acess.dart';
 import '../widgets/balance_due_dialouge.dart';
 import '../widgets/ledger_dialouge.dart';
+import '../widgets/outstanding_report_dialouge.dart';
 
 class Reports extends StatefulWidget {
   const Reports({Key? key}) : super(key: key);
@@ -62,19 +66,35 @@ class _ReportsState extends State<Reports> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 15.w, vertical: 15.w),
                         child: Column(children: [
+                          //Sales Report
                           MaterialButton(
                             padding: EdgeInsets.zero,
                             onPressed: () {
-                              NavigationService.navigateTo(Routes.salesReport);
+                              //  showDialog(
+                              //   context: context,
+                              //   builder: (context) =>
+                              //       loadingIndicatorCircle(context: context),
+                              // );
 
-                              appbarName(
-                                'Sales Report',
-                                AssetIcons.sales.toString(),
-                                context,
-                              );
+                              Future.delayed(const Duration(milliseconds: 800),
+                                  () {
+                                appbarName(
+                                  'Sales Report',
+                                  AssetIcons.sales.toString(),
+                                  context,
+                                );
+                                NavigationService.navigateTo(
+                                    Routes.salesReport);
+                                // showDialog(
+                                //   context: context,
+                                //   builder: (context) =>
+                                //       loadingIndicatorCircle(context: context),
+                                // );
+                                // NavigationService.goBack;
 
-                              SystemChrome.setPreferredOrientations(
-                                  [DeviceOrientation.landscapeLeft]);
+                                SystemChrome.setPreferredOrientations(
+                                    [DeviceOrientation.landscapeLeft]);
+                              });
                             },
                             child: Row(children: [
                               SvgPicture.asset(
@@ -98,6 +118,7 @@ class _ReportsState extends State<Reports> {
                             color: AppColors.secondaryColor,
                             thickness: 1,
                           ),
+                          // Ledger Report
                           MaterialButton(
                             padding: EdgeInsets.zero,
                             onPressed: () async {
@@ -105,15 +126,6 @@ class _ReportsState extends State<Reports> {
                                 context: context,
                                 builder: (context) => const LedgerDialoge(),
                               );
-
-                              appbarName(
-                                'Ledger Report',
-                                AssetIcons.ledger.toString(),
-                                context,
-                              );
-
-                              SystemChrome.setPreferredOrientations(
-                                  [DeviceOrientation.landscapeLeft]);
                             },
                             child: Row(children: [
                               SvgPicture.asset(
@@ -137,19 +149,15 @@ class _ReportsState extends State<Reports> {
                             color: AppColors.secondaryColor,
                             thickness: 1,
                           ),
+                          //'Outstanding Report
                           MaterialButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () {
-                              NavigationService.navigateTo(Routes.reportsTable);
-
-                              appbarName(
-                                'Outstanding Report',
-                                AssetIcons.outstanding.toString(),
-                                context,
+                            onPressed: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (context) =>
+                                    const OutstandingReportDialoge(),
                               );
-
-                              SystemChrome.setPreferredOrientations(
-                                  [DeviceOrientation.landscapeLeft]);
                             },
                             child: Row(children: [
                               SvgPicture.asset(
@@ -173,6 +181,7 @@ class _ReportsState extends State<Reports> {
                             color: AppColors.secondaryColor,
                             thickness: 1,
                           ),
+                          //Balance Due
                           MaterialButton(
                             padding: EdgeInsets.zero,
                             onPressed: () async {
@@ -180,29 +189,6 @@ class _ReportsState extends State<Reports> {
                                 context: context,
                                 builder: (context) => const BalanceDueDialoge(),
                               );
-
-                              //  SizedBox(
-                              //       height: 500,
-                              //       width: 200,
-                              //       child: CategoryGroupPopupWidget(
-                              //         categorygroupPopupText:
-                              //             _groupPopupValueController,
-                              //         value:
-                              //             _groupPopupValueController.text,
-                              //       ),
-                              //     ));
-
-                              // NavigationService.navigateTo(
-                              //     Routes.reportsPreSelect);
-
-                              // appbarName(
-                              //   'Balance Due',
-                              //   AssetIcons.balanceDue.toString(),
-                              //   context,
-                              // );
-
-                              // SystemChrome.setPreferredOrientations(
-                              //     [DeviceOrientation.landscapeLeft]);
                             },
                             child: Row(children: [
                               SvgPicture.asset(
@@ -260,6 +246,19 @@ class _ReportsState extends State<Reports> {
                           ),
                         ]),
                       ),
+
+                      // customeButton(
+                      //     borderRadius: 5.r,
+                      //     color: AppColors.errorColor,
+                      //     context: context,
+                      //     onCallBack: () async {
+                      //       await getPartyNameListRxobj.fetchPartyNameListData(
+                      //           0, '');
+                      //     },
+                      //     name: 'API test',
+                      //     minWidth: 200,
+                      //     height: 35,
+                      //     textStyle: TextFontStyle.cardhead),
                     ],
                   ),
                 ),

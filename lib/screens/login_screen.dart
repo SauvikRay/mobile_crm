@@ -26,13 +26,6 @@ class _LogeinScreenState extends State<LogeinScreen> {
   bool validation = false;
 
   @override
-  void initState() {
-    // TODO: implement initState
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final storage = GetStorage();
 

@@ -11,7 +11,7 @@ import '../endpoints.dart';
 class GetIgListApi {
   final storage = GetStorage();
   Future<Map> fetchIgData() async {
-    String token = storage.read(kKeyToken);
+    String token = storage.read(kKeyAccessToken);
     FormData formData = FormData.fromMap({
       "token": token,
     });

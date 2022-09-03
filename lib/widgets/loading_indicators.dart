@@ -14,6 +14,7 @@ Widget loadingIndicatorCircle({
     child: SpinKitFadingCircle(
       color: color ?? AppColors.primaryColor,
       size: size ?? loaderSize,
+      duration: Duration(milliseconds: 500),
     ),
   );
 }

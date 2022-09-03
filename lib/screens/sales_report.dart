@@ -25,7 +25,6 @@ class _SalesReportState extends State<SalesReport> {
   List<dynamic> items = [];
   @override
   void initState() {
-    fetchSalesReportAllData();
     getSalesReportRXobj.getSalesReport.first.then(
       (value) {
         setState(() {
@@ -34,17 +33,6 @@ class _SalesReportState extends State<SalesReport> {
       },
     );
     super.initState();
-  }
-
-  fetchSalesReportAllData() async {
-    await getSalesReportRXobj.fetcSalesReportData();
-    // Future.delayed(Duration(milliseconds: 400), () {
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) => loadingIndicatorCircle(context: context),
-    //   );
-    // });
-    // NavigationService.goBack;
   }
 
   @override

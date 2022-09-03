@@ -180,6 +180,8 @@ class _LogeinScreenState extends State<LogeinScreen> {
                                     color: AppColors.primaryColor,
                                   ),
                                   decoration: InputDecoration(
+                                    suffixIcon:
+                                        Icon(Icons.remove_red_eye_outlined),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(5.r),
@@ -214,13 +216,6 @@ class _LogeinScreenState extends State<LogeinScreen> {
                                   ),
                                 ),
                               ),
-                              Expanded(
-                                  flex: 2,
-                                  child: Icon(
-                                    Icons.remove_red_eye_outlined,
-                                    size: 30.sp,
-                                    color: AppColors.secondaryColor,
-                                  ))
                             ],
                           ),
                         ),

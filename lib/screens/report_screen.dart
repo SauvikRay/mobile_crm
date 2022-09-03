@@ -69,14 +69,15 @@ class _ReportsState extends State<Reports> {
                           //Sales Report
                           MaterialButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () {
-                              //  showDialog(
-                              //   context: context,
-                              //   builder: (context) =>
-                              //       loadingIndicatorCircle(context: context),
-                              // );
-
-                              Future.delayed(const Duration(milliseconds: 800),
+                            onPressed: () async {
+                              showDialog(
+                                context: context,
+                                builder: (context) =>
+                                    loadingIndicatorCircle(context: context),
+                              );
+                              await getSalesReportRXobj.fetcSalesReportData();
+                              NavigationService.goBack;
+                              Future.delayed(const Duration(milliseconds: 400),
                                   () {
                                 appbarName(
                                   'Sales Report',
@@ -85,12 +86,6 @@ class _ReportsState extends State<Reports> {
                                 );
                                 NavigationService.navigateTo(
                                     Routes.salesReport);
-                                // showDialog(
-                                //   context: context,
-                                //   builder: (context) =>
-                                //       loadingIndicatorCircle(context: context),
-                                // );
-                                // NavigationService.goBack;
 
                                 SystemChrome.setPreferredOrientations(
                                     [DeviceOrientation.landscapeLeft]);

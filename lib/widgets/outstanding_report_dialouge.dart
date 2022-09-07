@@ -222,6 +222,7 @@ class _OutstandingReportDialogeState extends State<OutstandingReportDialoge> {
                           dateFrom = '';
                           dateTo = '';
                         });
+                        NavigationService.goBack;
                       },
                       name: 'Clear',
                       height: 30.h,

@@ -192,7 +192,7 @@ class _ReportsState extends State<Reports> {
                               ),
                               UIHelper.horizontalSpaceSmall,
                               Text(
-                                'Balance Due',
+                                'Stock Summery',
                                 style: TextFontStyle.buttonBoldStyle
                                     .copyWith(color: Colors.black),
                               ),

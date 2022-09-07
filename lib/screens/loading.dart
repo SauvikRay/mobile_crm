@@ -35,6 +35,8 @@ class _LoadingState extends State<Loading> {
       DioSingleton.instance.update(token);
 
       await getSalesReportRXobj.fetcSalesReportData();
+      await getDashBoardRXobj.fetchDashBoardData();
+      getProductRXobj.fetchProductData();
     }
     setState(() {
       _isLoading = false;

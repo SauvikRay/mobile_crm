@@ -11,6 +11,7 @@ import 'controller/appbar_name_provider.dart';
 import 'helpers/all_routes.dart';
 import 'helpers/di.dart';
 import 'helpers/dio/dio.dart';
+import 'networks/api_acess.dart';
 import 'screens/loading.dart';
 import 'screens/login_screen.dart';
 
@@ -19,6 +20,7 @@ void main() async {
 
   await GetStorage.init();
   DioSingleton.instance.create();
+  await getProductRXobj.fetchProductData();
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,

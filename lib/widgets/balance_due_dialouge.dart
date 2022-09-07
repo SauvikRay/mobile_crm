@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -67,7 +69,7 @@ class _BalanceDueDialogeState extends State<BalanceDueDialoge> {
             children: [
               // SvgPicture.asset(AssetIcons.i),
               Text(
-                'Balance Due',
+                'Stock Summery',
                 style: TextFontStyle.headline1BoldStyle
                     .copyWith(color: Colors.black),
               ),
@@ -139,7 +141,7 @@ class _BalanceDueDialogeState extends State<BalanceDueDialoge> {
                           );
 
                           appbarName(
-                            'Balance Due',
+                            'Stock Summery',
                             AssetIcons.balanceDue.toString(),
                             context,
                           );
@@ -174,6 +176,7 @@ class _BalanceDueDialogeState extends State<BalanceDueDialoge> {
                           dateTo = '';
                           selectDateControler.clear();
                         });
+                        NavigationService.goBack;
                       },
                       name: 'Clear',
                       height: 30.h,

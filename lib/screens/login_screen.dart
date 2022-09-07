@@ -102,13 +102,7 @@ class _LogeinScreenState extends State<LogeinScreen> {
                             },
                             controller: mobileController,
                             keyboardType: TextInputType.number,
-                            style: TextStyle(
-                              letterSpacing: 1.5,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w100,
-                              fontStyle: FontStyle.normal,
-                              color: AppColors.primaryColor,
-                            ),
+                            style: TextFontStyle.loginType,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -121,7 +115,7 @@ class _LogeinScreenState extends State<LogeinScreen> {
                               hintStyle: TextStyle(
                                 letterSpacing: 1,
                                 fontSize: 14.sp,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w300,
                                 fontStyle: FontStyle.normal,
                                 color: Colors.black,
                               ),
@@ -172,13 +166,7 @@ class _LogeinScreenState extends State<LogeinScreen> {
                                   },
                                   controller: acceKeyController,
                                   obscureText: true,
-                                  style: TextStyle(
-                                    letterSpacing: 1.5,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w100,
-                                    fontStyle: FontStyle.normal,
-                                    color: AppColors.primaryColor,
-                                  ),
+                                  style: TextFontStyle.loginType,
                                   decoration: InputDecoration(
                                     suffixIcon:
                                         Icon(Icons.remove_red_eye_outlined),
@@ -221,13 +209,15 @@ class _LogeinScreenState extends State<LogeinScreen> {
                         ),
                         UIHelper.verticalSpaceLarge,
                         customeButton(
-                          name: 'LogIn',
+                          name: 'Login Now',
                           height: .065.sh,
                           minWidth: double.infinity,
                           borderRadius: 5.r,
                           color: AppColors.primaryColor,
-                          textStyle: TextFontStyle.headline1BoldStyle
-                              .copyWith(color: Colors.white),
+                          textStyle: TextStyle(
+                              fontSize: 16.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400),
                           context: context,
                           onCallBack: () async {
                             if (_formKey.currentState!.validate()) {

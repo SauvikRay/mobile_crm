@@ -155,6 +155,7 @@ class _LedgerDialogeState extends State<LedgerDialoge> {
                         setState(() {
                           dateTo = '';
                         });
+                        NavigationService.goBack;
                       },
                       name: 'Clear',
                       height: 30.h,

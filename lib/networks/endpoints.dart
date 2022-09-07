@@ -28,6 +28,8 @@ class Endpoints {
   static String getLedgerReport() => "/api/LedgerMast/Ledger";
   static String getOutStandingReport() => "/api/Party/getOutstanding";
   static String getPartyNameList() => "/api/LedgerMast/PartyName";
+  static String getDashBoard() => "/api/dashboard/AppDashboardSale";
+  static String getProduct() => "/api/Products/getProducts";
   ////////////////////
   static String postShopSchedule() => "/api/save-shop-schedule";
   static String getShopSchedule(String shop) => "/api/shop-schedule/$shop";
@@ -74,8 +76,7 @@ class Endpoints {
       "/api/product-addon-delete/$addonId";
   static String getShowShopProduct(String foodId) =>
       "/api/show-shop-product/$foodId";
-  static String getDashBoardOrderList({int record = 10, int page = 1}) =>
-      "/api/shop-dashboard-order-list/?number=$record&page=$page";
+
   static String postDeviceToken() => "/api/device-token";
   static String deleteProductOptionPrice() => "/api/delete-product-pricing";
   static String postOrderAcceptReject(String orderNO, int status) =>
